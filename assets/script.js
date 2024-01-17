@@ -59,6 +59,40 @@ function getPasswordConfiguration () {
   };
   return passwordConfiguration;
 }
+// This function allows for retrieving a random element from an array
+function getRandom(arr) {
+  var randIndex = Math.floor(Math.random() * arr.length);
+  var randElement = arr[randIndex];
+  return randElement;
+}
+// This function generates the password with the given user configuration
+function generatePassword() {
+  var configuration = getPasswordConfiguration();
+  // Makes a new array
+  var currentArr = new Array()
+  // This is a conditional statement that strings together the various pieces to form a password
+  if (configuration.hasSpecialCharacters) {
+    currentArr= currentArr.concat(specialCharacters)
+  }
+  if (configuration.hasNumberCharacters) {
+    currentArr= currentArr.concat(numberCharacters)
+  }
+  if (configuration.hasLowerCaseCharacters) {
+    currentArr= currentArr.concat(lowerCaseCharacters)
+  }
+  if (configuration.hasUpperCaseCharacters) {
+    currentArr= currentArr.concat(upperCaseCharacters)
+  }
+  console.log(currentArr)
+  // This generates a random password from the content above
+  let pass = ""
+  let i = 0
+  while (i < configuration.length) {
+    pass += getRandom(currentArr);
+    i++
+  }
+  return pass
+}
 
 // Write password to the #password input
 function writePassword() {
