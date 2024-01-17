@@ -6,6 +6,60 @@ var lowerCaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
 var upperCaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var numberCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
+// Function that gets the user's input regarding how they want their password to be configured
+function getPasswordConfiguration () {
+  // This variable will store how many characters the user wants the length to be
+  var length = parseInt(
+    prompt('Enter desired character amount'),
+    10
+  );
+  // Checks if the entry from above is a number, and tells the user if not
+  if (Number.isNaN(length)) {
+    alert('Password character length must be input as a number');
+    return null;
+  }
+  // Checks if the minimum character amount entered is less than 8 and alerts if true
+  if (length < 8) {
+    alert('Password length must be at least 8 characters');
+    return null;
+  }
+  // Checks if the number entered is greater than 128 and alerts if so
+  if (length > 128) {
+    alert('Password length must be less than 128 characters');
+    return null;
+  }
+  // Variables that store if the user wants any of the specified character groups used or not
+  var hasSpecialCharacters = confirm(
+    'Click OK to confirm that you want special characters.'
+  );
+  var hasNumberCharacters = confirm(
+    'Click OK to confirm that you want number characters.'
+  );
+  var hasLowerCaseCharacters = confirm(
+    'Click OK to confirm that you want lower case characters.'
+  );
+  var hasUpperCaseCharacters = confirm(
+    'Click OK to confirm that you want upper case characters.'
+  );
+  // This conditional statement checks if no character groups were selected, and alerts if so
+  if (hasSpecialCharacters) {}
+  else if (hasNumberCharacters) {}
+  else if (hasLowerCaseCharacters) {}
+  else if (hasUpperCaseCharacters) {}
+  else {
+    alert('Password must include at least one character type.');
+  }
+  // This is an object that stores all the options chosen by the user
+  var passwordConfiguration = {
+    length: length,
+    hasSpecialCharacters: hasSpecialCharacters,
+    hasNumberCharacters: hasNumberCharacters,
+    hasLowerCaseCharacters: hasLowerCaseCharacters,
+    hasUpperCaseCharacters: hasUpperCaseCharacters
+  };
+  return passwordConfiguration;
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
